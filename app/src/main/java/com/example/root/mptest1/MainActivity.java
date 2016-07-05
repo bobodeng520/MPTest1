@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.BarData;
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BarChart barChart = (BarChart) findViewById(R.id.chart);
+        HorizontalBarChart barChart = (HorizontalBarChart) findViewById(R.id.chart);
         // creating list of entry
         ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
         entries.add(new BarEntry(0, 4f));
@@ -48,8 +49,15 @@ public class MainActivity extends AppCompatActivity {
 
         // create a data object with the datasets
         BarData data = new BarData(dataSets);
+
+        data.setValueTextSize(10f);
+        data.setBarWidth(0.9f);
+
         barChart.setData(data); // set the data and list of lables into chart
 
         barChart.setDescription("Description");  // set the description
+
+        barChart.setFitBars(true);
+        barChart.animateY(2500);
     }
 }
