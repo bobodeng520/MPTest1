@@ -93,6 +93,8 @@ public class HorizontalBarChartRenderer extends BarChartRenderer {
             c.drawRect(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2],
                     buffer.buffer[j + 3], mRenderPaint);
 
+            //System.out.println("x0: "+buffer.buffer[j]+"y0: "+buffer.buffer[j + 1]+"x1: "+buffer.buffer[j + 2]+"y1: "+buffer.buffer[j + 3]);
+
             if (drawBorder) {
                 c.drawRect(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2],
                         buffer.buffer[j + 3], mBarBorderPaint);

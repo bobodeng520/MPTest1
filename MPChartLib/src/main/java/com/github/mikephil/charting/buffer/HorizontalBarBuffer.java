@@ -15,6 +15,8 @@ public class HorizontalBarBuffer extends BarBuffer {
 
         float size = data.getEntryCount() * phaseX;
         float barWidthHalf = mBarWidth / 2f;
+        float tempLast = 0;
+        float left = 0, right = 0;
 
         for (int i = 0; i < size; i++) {
 
@@ -27,24 +29,34 @@ public class HorizontalBarBuffer extends BarBuffer {
             float y = e.getY();
             float[] vals = e.getYVals();
 
+            //System.out.println("Horizontal feed: x-"+x+" y-"+y);
+
             if (!mContainsStacks || vals == null) {
 
                 float bottom = x - barWidthHalf;
                 float top = x + barWidthHalf;
-                float left, right;
+
+
+                //System.out.println("Miles: feed 1, barWidthHalf: "+barWidthHalf);
+                /*
                 if (mInverted) {
                     left = y >= 0 ? y : 0;
                     right = y <= 0 ? y : 0;
                 } else {
                     right = y >= 0 ? y : 0;
                     left = y <= 0 ? y : 0;
-                }
+                }*/
+                left = tempLast;
+                right += y;
+                //System.out.println("right = "+right+" y= "+y);
 
                 // multiply the height of the rect with the phase
                 if (right > 0)
                     right *= phaseY;
                 else
                     left *= phaseY;
+
+                tempLast = right;
 
                 addBar(left, top, right, bottom);
 
@@ -71,7 +83,6 @@ public class HorizontalBarBuffer extends BarBuffer {
 
                     float bottom = x - barWidthHalf;
                     float top = x + barWidthHalf;
-                    float left, right;
                     if (mInverted) {
                         left = y >= yStart ? y : yStart;
                         right = y <= yStart ? y : yStart;

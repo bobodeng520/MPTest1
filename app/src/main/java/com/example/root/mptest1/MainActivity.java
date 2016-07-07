@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.BarData;
@@ -27,12 +28,11 @@ public class MainActivity extends AppCompatActivity {
         HorizontalBarChart barChart = (HorizontalBarChart) findViewById(R.id.chart);
         // creating list of entry
         ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
-        entries.add(new BarEntry(0, 4f));
         entries.add(new BarEntry(1, 8f));
-        entries.add(new BarEntry(2, 6f));
-        entries.add(new BarEntry(3, 2f));
-        entries.add(new BarEntry(4, 18f));
-        entries.add(new BarEntry(5, 9f));
+        entries.add(new BarEntry(2, 4f));
+        entries.add(new BarEntry(3, 3f));
+        entries.add(new BarEntry(4, 4f));
+        entries.add(new BarEntry(2, 5f));
 
         BarDataSet dataset = new BarDataSet(entries, "# of Calls");
         // creating labels
@@ -51,13 +51,15 @@ public class MainActivity extends AppCompatActivity {
         BarData data = new BarData(dataSets);
 
         data.setValueTextSize(10f);
-        data.setBarWidth(0.9f);
+        data.setBarWidth(1.0f);
 
         barChart.setData(data); // set the data and list of lables into chart
 
+        barChart.setVisibleYRange(0, 24, YAxis.AxisDependency.LEFT);
+
         barChart.setDescription("Description");  // set the description
 
-        barChart.setFitBars(true);
-        barChart.animateY(2500);
+        //barChart.setFitBars(true);
+        //barChart.animateY(2500);
     }
 }
