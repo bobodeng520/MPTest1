@@ -27,6 +27,7 @@ public class XAxisRenderer extends AxisRenderer {
         super(viewPortHandler, trans, xAxis);
 
         this.mXAxis = xAxis;
+        mXAxis.setLabelCount(23, true);
 
         mAxisLabelPaint.setColor(Color.BLACK);
         mAxisLabelPaint.setTextAlign(Align.CENTER);
@@ -237,13 +238,16 @@ public class XAxisRenderer extends AxisRenderer {
             return;
 
         if(mRenderGridLinesBuffer.length != mAxis.mEntryCount * 2){
+            System.out.println("XAxisRender mAxis.mEntryCount = "+mAxis.mEntryCount);
             mRenderGridLinesBuffer = new float[mXAxis.mEntryCount * 2];
         }
         float[] positions = mRenderGridLinesBuffer;
 
+
         for (int i = 0; i < positions.length; i += 2) {
             positions[i] = mXAxis.mEntries[i / 2];
             positions[i + 1] = mXAxis.mEntries[i / 2];
+            System.out.println("XAxisRender  1 positions[i] = "+positions[i]+"; positions[i + 1] = "+positions[i + 1]);
         }
 
         mTrans.pointValuesToPixel(positions);
@@ -254,6 +258,11 @@ public class XAxisRenderer extends AxisRenderer {
         gridLinePath.reset();
 
         for (int i = 0; i < positions.length; i += 2) {
+
+            System.out.println("XAxisRender position.length = "+positions.length);
+            System.out.println("XAxisRender  2 positions[i] = "+positions[i]+"; positions[i + 1] = "+positions[i + 1]);
+
+            //drawGridLine(c, positions[i]+100, 0, gridLinePath);
 
             drawGridLine(c, positions[i], positions[i + 1], gridLinePath);
         }
@@ -272,8 +281,17 @@ public class XAxisRenderer extends AxisRenderer {
         gridLinePath.moveTo(x, mViewPortHandler.contentBottom());
         gridLinePath.lineTo(x, mViewPortHandler.contentTop());
 
+        System.out.println("XAxisRenderer drawGridLine mViewPortHandler.contentBottom() = "+mViewPortHandler.contentBottom());
+        System.out.println("XAxisRenderer drawGridLine mViewPortHandler.contentTop() = "+mViewPortHandler.contentTop());
+
         // draw a path because lines don't support dashing on lower android versions
         c.drawPath(gridLinePath, mGridPaint);
+
+        for (int i = 0; i < 5; i++) {
+            c.drawLine(x + 25, (float) ((52.5 + 236.25*i) - 20), x + 25, (float) (52.5 + 236.25*i), mGridPaint);
+            c.drawLine(x + 50, (float) ((52.5 + 236.25*i) - 40), x + 50, (float) (52.5 + 236.25*i), mGridPaint);
+            c.drawLine(x + 75, (float) ((52.5 + 236.25*i) - 20), x + 75, (float) (52.5 + 236.25*i), mGridPaint);
+        }
 
         gridLinePath.reset();
     }

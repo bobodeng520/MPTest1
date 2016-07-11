@@ -27,6 +27,7 @@ public class YAxisRenderer extends AxisRenderer {
         super(viewPortHandler, trans, yAxis);
 
         this.mYAxis = yAxis;
+        mYAxis.setLabelCount(5, true);
 
         if(mViewPortHandler != null) {
 

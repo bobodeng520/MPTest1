@@ -192,7 +192,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
         long starttime = System.currentTimeMillis();
 
         // execute all drawing commands
-        drawGridBackground(canvas);
+        //drawGridBackground(canvas);
 
         if (mAxisLeft.isEnabled())
             mAxisRendererLeft.computeAxis(mAxisLeft.mAxisMinimum, mAxisLeft.mAxisMaximum, mAxisLeft.isInverted());
@@ -226,6 +226,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
         // content-rect
         int clipRestoreCount = canvas.save();
         canvas.clipRect(mViewPortHandler.getContentRect());
+
 
         mXAxisRenderer.renderGridLines(canvas);
         mAxisRendererLeft.renderGridLines(canvas);
@@ -266,8 +267,8 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
         canvas.restoreToCount(clipRestoreCount);
 
         mXAxisRenderer.renderAxisLabels(canvas);
-        mAxisRendererLeft.renderAxisLabels(canvas);
-        mAxisRendererRight.renderAxisLabels(canvas);
+        //mAxisRendererLeft.renderAxisLabels(canvas);
+        //mAxisRendererRight.renderAxisLabels(canvas);
 
         mRenderer.drawValues(canvas);
 
@@ -760,6 +761,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     public void setVisibleXRange(float minXRange, float maxXRange) {
         float minScale = mXAxis.mAxisRange / minXRange;
         float maxScale = mXAxis.mAxisRange / maxXRange;
+        System.out.println("mXAxis.mAxisRange = "+mXAxis.mAxisRange);
         mViewPortHandler.setMinMaxScaleX(minScale, maxScale);
     }
 

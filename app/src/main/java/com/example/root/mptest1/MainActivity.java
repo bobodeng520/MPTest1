@@ -21,12 +21,15 @@ public class MainActivity extends AppCompatActivity {
         LineChart lineChart = (LineChart) findViewById(R.id.chart);
         // creating list of entry
         ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(0, 4f));
+        entries.add(new Entry(0, 8f));
         entries.add(new Entry(1, 8f));
+        entries.add(new Entry(1, 4f));
+        entries.add(new Entry(2, 4f));
         entries.add(new Entry(2, 6f));
-        entries.add(new Entry(3, 2f));
-        entries.add(new Entry(4, 18f));
-        entries.add(new Entry(5, 9f));
+        entries.add(new Entry(3, 6f));
+        entries.add(new Entry(3, 10f));
+        entries.add(new Entry(4, 10f));
+        entries.add(new Entry(4, 0f));
 
         LineDataSet dataset = new LineDataSet(entries, "# of Calls");
         // creating labels
@@ -45,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         LineData data = new LineData(dataSets);
         lineChart.setData(data); // set the data and list of lables into chart
 
-        lineChart.setDescription("Description");  // set the description
+        lineChart.setVisibleXRange(0, 24);
+
+        lineChart.setDescription("");  // set the description
     }
 }
